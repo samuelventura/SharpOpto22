@@ -4,7 +4,7 @@
 		<id>SharpOpto22</id>
 		<version>1.0.5.0</version>
 		<authors>Samuel Ventura</authors>
-		<description>C# Opto22 communication utilities</description>
+		<description>C# opto22 library</description>
 		<projectUrl>https://github.com/samuelventura/SharpTools</projectUrl>
 		<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
 	</metadata>
