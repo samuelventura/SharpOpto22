@@ -32,7 +32,7 @@ namespace SharpOpto22
 
 		public void Dispose()
 		{
-			Closer.Close(socket);
+			Disposer.Dispose(socket);
 		}
 
 	}
