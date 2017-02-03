@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SharpOpto22")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Samuel Ventura")]
+[assembly: AssemblyCompany("samuel.ventura@yeico.com")]
 [assembly: AssemblyProduct("SharpOpto22")]
 [assembly: AssemblyCopyright("Copyright 2017 Samuel Ventura")]
 [assembly: AssemblyTrademark("")]
