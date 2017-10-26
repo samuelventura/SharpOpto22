@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharpOpto22\SharpOpto22.csproj">
-    </ProjectReference>  
+    <ProjectReference Include="..\SharpOpto22\SharpOpto22.csproj"/>  
     <PackageReference Include="NUnit" Version="3.8.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.8.0-*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.*" />
