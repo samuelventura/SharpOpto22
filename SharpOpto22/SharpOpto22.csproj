@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
     <PackageId>SharpOpto22</PackageId>
-    <PackageVersion>1.0.6.0</PackageVersion>
+    <PackageVersion>1.0.7.0</PackageVersion>
     <Description>C# Opto22 Tools</Description>
     <Authors>Samuel Ventura</Authors>
     <PackageProjectUrl>https://github.com/samuelventura/SharpOpto22</PackageProjectUrl>  
@@ -14,8 +14,4 @@
   <ItemGroup>
   </ItemGroup>
   
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="System.IO.Ports" Version="4.4.0" />
-  </ItemGroup>
-
 </Project>
