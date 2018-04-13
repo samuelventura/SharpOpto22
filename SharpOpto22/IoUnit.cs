@@ -85,7 +85,7 @@ namespace SharpOpto22
 		{
 			var dof = 0xFFFFF0300004L;
 			var d = protocol.ReadQuadlet(dof);
-			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0);
+			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0); //d[3]=1
 		}
 	
 		// Get Module Type (Page 108)
@@ -145,21 +145,21 @@ namespace SharpOpto22
 		{
 			var dof = 0xFFFFF0800000L + 0x40L * (4 * module + point);
 			var d = protocol.ReadQuadlet(dof);
-			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0);
+			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0); //d[3]=1
 		}
 	
 		public bool GetAndClearDigitalPointOnLatch(int module, int point)
 		{
 			var dof = 0xFFFFF02E0004L + 0x18L * (4 * module + point);
 			var d = protocol.ReadQuadlet(dof);
-			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0);			
+			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0); //d[3]=1		
 		}
 		
 		public bool GetAndClearDigitalPointOffLatch(int module, int point)
 		{
 			var dof = 0xFFFFF02E0008L + 0x18L * (4 * module + point);
 			var d = protocol.ReadQuadlet(dof);
-			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0);			
+			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0); //d[3]=1	
 		}
 	
 		// Set Digital Point State (Page 138) 4-POINT MODULES ONLY
@@ -173,7 +173,7 @@ namespace SharpOpto22
 			protocol.WriteQuadlet(dof, d);
 		}
 		
-		// Set Analog Point Value (Page 110)
+		// Get Analog Point Value (Page 84 Extended)
 		public float GetAnalogPointValue(int module, int point)
 		{
 			var dof = 0xFFFFF0260000L + 0x1000L * module + 0x40L * point;
@@ -181,7 +181,7 @@ namespace SharpOpto22
 			return ByteArrayToFloat(d);
 		}
 	
-		// Set Analog Point Value (Page 111)
+		// Set Analog Point Value (Page 85 Extended)
 		public void SetAnalogPointValue(int module, int point, float value)
 		{
 			var dof = 0xFFFFF02A0000L + 0x1000L * module + 0x40L * point;

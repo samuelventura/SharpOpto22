@@ -27,11 +27,11 @@ namespace SharpOpto22
 	static class Disposer
 	{
 		//SerialPort, Socket, TcpClient, Streams, Writers, Readers, ...
-		public static void Dispose(IDisposable closeable)
+		public static void Dispose(IDisposable disposable)
 		{
 			try {
-				if (closeable != null)
-					closeable.Dispose();
+				if (disposable != null)
+					disposable.Dispose();
 			} catch (Exception) {
 			}
 		}
