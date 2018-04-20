@@ -145,21 +145,23 @@ namespace SharpOpto22
 		{
 			var dof = 0xFFFFF0800000L + 0x40L * (4 * module + point);
 			var d = protocol.ReadQuadlet(dof);
-			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0); //d[3]=1
+			return ByteArrayToBool(d);
 		}
 	
 		public bool GetAndClearDigitalPointOnLatch(int module, int point)
 		{
-			var dof = 0xFFFFF02E0004L + 0x18L * (4 * module + point);
+			//>R8.0
+			var dof = 0xFFFFF02E0004L + 0x600L * module + 0x18L * point;
 			var d = protocol.ReadQuadlet(dof);
-			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0); //d[3]=1		
+			return ByteArrayToBool(d);
 		}
 		
 		public bool GetAndClearDigitalPointOffLatch(int module, int point)
 		{
-			var dof = 0xFFFFF02E0008L + 0x18L * (4 * module + point);
+			//>R8.0
+			var dof = 0xFFFFF02E0008L + 0x600L * module + 0x18L * point;
 			var d = protocol.ReadQuadlet(dof);
-			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0); //d[3]=1	
+			return ByteArrayToBool(d);
 		}
 	
 		// Set Digital Point State (Page 138) 4-POINT MODULES ONLY
@@ -200,6 +202,11 @@ namespace SharpOpto22
 			return text.Substring(0, first);			
 		}
 		
+		private bool ByteArrayToBool(byte[] d)
+		{
+			return (d[3] != 0 || d[2] != 0 || d[1] != 0 || d[0] != 0); //d[3]=1	
+		}
+
 		private int ByteArrayToInt(byte[] d)
 		{
 			if (BitConverter.IsLittleEndian)

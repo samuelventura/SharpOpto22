@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
     <PackageId>SharpOpto22</PackageId>
-    <PackageVersion>1.0.7.0</PackageVersion>
+    <PackageVersion>1.0.8.0</PackageVersion>
     <Description>C# Opto22 Tools</Description>
     <Authors>Samuel Ventura</Authors>
     <PackageProjectUrl>https://github.com/samuelventura/SharpOpto22</PackageProjectUrl>  
