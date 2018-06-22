@@ -190,7 +190,56 @@ namespace SharpOpto22
 			var d = FloatToByteArray(value);
 			protocol.WriteQuadlet(dof, d);
 		}
-		
+
+		public bool[] ReadModuleLatches(int module)
+		{
+			var dof = 0xFFFFF02E0000L + 0x600L * module;
+			var d = protocol.ReadBlock(dof, 0x18 * 4);
+			var data = new bool[8];
+			data[0] = ByteArrayToBool(SubArray(d, 0*0x18+4));
+			data[1] = ByteArrayToBool(SubArray(d, 1*0x18+4));
+			data[2] = ByteArrayToBool(SubArray(d, 2*0x18+4));
+			data[3] = ByteArrayToBool(SubArray(d, 3*0x18+4));
+			data[4] = ByteArrayToBool(SubArray(d, 0*0x18+8));
+			data[5] = ByteArrayToBool(SubArray(d, 1*0x18+8));
+			data[6] = ByteArrayToBool(SubArray(d, 2*0x18+8));
+			data[7] = ByteArrayToBool(SubArray(d, 3*0x18+8));
+			return data;
+		}
+
+		public byte[] ReadDigitalBank()
+		{
+			var dof = 0xFFFFF0400000L;
+			return protocol.ReadBlock(dof, 0x8);
+		}
+
+		public byte[] ReadAnalogBank()
+		{
+			var dof = 0xFFFFF0600000L;
+			return protocol.ReadBlock(dof, 0x100);
+		}
+	
+		public bool GetDigitalPointState(byte[] bank, int point)
+		{
+			var byt = 7 - point / 8;
+			var bit = point % 8;
+			var mask = 1 << bit;
+			return (bank[byt] & mask) != 0;
+		}
+
+		public float GetAnalogPointValue(byte[] bank, int point)
+		{
+			var sa = SubArray(bank, point * 4);
+			return ByteArrayToFloat(sa);
+		}
+
+		private byte[] SubArray(byte[] d, int offset)
+		{ 
+			var nd = new byte[4];
+			for(var i=0;i<4;i++) nd[i] = d[offset + i];
+			return nd;
+		}
+
 		private string ToNulTerminatedString(byte[] d)
 		{
 			var text = ascii.GetString(d);
@@ -214,6 +263,13 @@ namespace SharpOpto22
 			return BitConverter.ToInt32(d, 0);
 		}
 	
+		private uint ByteArrayToUInt(byte[] d)
+		{
+			if (BitConverter.IsLittleEndian)
+				Array.Reverse(d);
+			return BitConverter.ToUInt32(d, 0);
+		}
+
 		private float ByteArrayToFloat(byte[] d)
 		{
 			if (BitConverter.IsLittleEndian)

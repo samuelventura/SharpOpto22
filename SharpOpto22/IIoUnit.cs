@@ -47,6 +47,13 @@ namespace SharpOpto22
 		void SetAnalogPointValue(int module, int point, float value);
 	
 		float GetAnalogPointValue(int module, int point);
+
+		bool[] ReadModuleLatches(int module);
+		byte[] ReadAnalogBank();
+		byte[] ReadDigitalBank();
+
+		bool GetDigitalPointState(byte[] bank, int point);
+		float GetAnalogPointValue(byte[] bank, int point);
 	}
 }
 

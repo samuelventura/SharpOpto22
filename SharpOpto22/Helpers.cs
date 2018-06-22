@@ -35,16 +35,6 @@ namespace SharpOpto22
 			} catch (Exception) {
 			}
 		}
-
-		public static void Close(TcpListener closeable)
-		{
-			try {
-				if (closeable != null)
-					closeable.Stop();
-			} catch (Exception) {
-			}
-		}
-
 	}
 	
 	static class Thrower
