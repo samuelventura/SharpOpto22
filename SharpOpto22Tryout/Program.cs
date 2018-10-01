@@ -21,11 +21,22 @@ public static class Program
             var dbank = brain.ReadDigitalBank();
 
             var latches0 = brain.ReadModuleLatches(0);
-            var latches7 = brain.ReadModuleLatches(7);
-            if (latches7[0]) counter.AddTransition();
-            if (latches7[0]) counter.AddTransition();
+
+            var loglatch = false;
+            for (var i=0;i<8;i++) if (latches0[i]) loglatch = true;
+            if (loglatch) {
+                for (var i=0;i<8;i++)
+                {
+                    Console.Write(latches0[i]? "1" : "0");
+                }
+                Console.WriteLine();
+            }
+
+            if (latches0[0]) counter.AddTransition();
+            if (latches0[4]) counter.AddTransition();
             counter.UpdateFrequency();
 
+            /*
             //Console.WriteLine(ToHex(dbank, 0, dbank.Length));
             //Console.WriteLine(ToHex(abank, 0, abank.Length));
             Console.WriteLine("F:{0} DM:[{1} {2} {3} {4}] AM:[{5:0.0} {6:0.0}]", 
@@ -36,6 +47,7 @@ public static class Program
                 brain.GetDigitalPointState(dbank, 3),
                 brain.GetAnalogPointValue(abank, 16),
                 brain.GetAnalogPointValue(abank, 17));
+             */
         }    
     }
 

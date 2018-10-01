@@ -196,14 +196,14 @@ namespace SharpOpto22
 			var dof = 0xFFFFF02E0000L + 0x600L * module;
 			var d = protocol.ReadBlock(dof, 0x18 * 4);
 			var data = new bool[8];
-			data[0] = ByteArrayToBool(SubArray(d, 0*0x18+4));
-			data[1] = ByteArrayToBool(SubArray(d, 1*0x18+4));
-			data[2] = ByteArrayToBool(SubArray(d, 2*0x18+4));
-			data[3] = ByteArrayToBool(SubArray(d, 3*0x18+4));
-			data[4] = ByteArrayToBool(SubArray(d, 0*0x18+8));
-			data[5] = ByteArrayToBool(SubArray(d, 1*0x18+8));
-			data[6] = ByteArrayToBool(SubArray(d, 2*0x18+8));
-			data[7] = ByteArrayToBool(SubArray(d, 3*0x18+8));
+			data[0] = ByteArrayToBool(SubArray(d, 0*0x18+4)); //m=0, latch=on
+			data[1] = ByteArrayToBool(SubArray(d, 1*0x18+4)); //m=1, latch=on
+			data[2] = ByteArrayToBool(SubArray(d, 2*0x18+4)); //m=2, latch=on
+			data[3] = ByteArrayToBool(SubArray(d, 3*0x18+4)); //m=3, latch=on
+			data[4] = ByteArrayToBool(SubArray(d, 0*0x18+8)); //m=0, latch=off
+			data[5] = ByteArrayToBool(SubArray(d, 1*0x18+8)); //m=1, latch=off
+			data[6] = ByteArrayToBool(SubArray(d, 2*0x18+8)); //m=2, latch=off
+			data[7] = ByteArrayToBool(SubArray(d, 3*0x18+8)); //m=3, latch=off
 			return data;
 		}
 
